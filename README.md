@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+# Mochi Roll
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-fidelity terminal-inspired media library dashboard built with **React**, **TypeScript**, and **Tailwind CSS**. This interface features a retro-futuristic cyberpunk aesthetic, leveraging a custom design system based on deep obsidian tones and neon accents.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technical Stack
 
-## React Compiler
+- **Framework:** React 18
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS (Custom Theme)
+- **Icons:** Google Material Symbols
+- **Fonts:** Plus Jakarta Sans (Headlines), Inter (Body), Space Grotesk (Labels)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Design System Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The project implements a highly customized `tailwind.config.ts` to achieve the Cyberpunk UI seen in Mochi Roll:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Color Palette:** Custom tokens such as `surface-container`, `primary-fixed`, and `on-tertiary` to manage high-contrast neon elements.
+- **Visual Effects:** Intensive use of `backdrop-blur`, custom `drop-shadow` for glow effects, and double-border styling for glassmorphism components.
+- **Typography:** Triple-font strategy to differentiate between system headers, terminal logs, and content labels.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Project Structure
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Navigation:** Sticky header with integrated terminal search and system status indicators.
+- **Sidebar:** Root directory navigation with active state indicators and operator profile status.
+- **System Library:** Grid-based content display featuring:
+  - Dynamic media cards with "Watched" or "Queued" status badges.
+  - Metadata overlay (PID, Rating, Source).
+  - Interactive hover states for media playback.
+- **Status Bar:** Fixed footer displaying real-time memory usage, sector activity, and network protocols.
