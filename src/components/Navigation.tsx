@@ -1,52 +1,61 @@
 export const Navigation = () => {
   return (
-    <header className="sticky top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-background/90 backdrop-blur-md border-b-4 border-double border-primary/30 shadow-[0_4px_20px_rgba(255,46,140,0.1)]">
-      <div className="flex items-center gap-8">
-        <div className="text-2xl font-black italic text-primary drop-shadow-[0_0_8px_rgba(255,177,199,0.6)] font-headline">
-          Mochi Roll
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-background/80 backdrop-blur-md border-b-4 border-double border-primary/20 shadow-[0_4px_30px_rgba(255,177,199,0.1)]">
+      <div className="flex items-center gap-12">
+        {/* Logo  */}
+        <div className="flex flex-col">
+          <div className="text-xs font-label text-primary/50 tracking-[0.3em] mb-[-4px]">
+            Movie_OS
+          </div>
+          <div className="text-xl font-black text-primary drop-shadow-[0_0_10px_rgba(255,177,199,0.5)] font-headline tracking-tighter italic">
+            MOCHI_ROLL<span className="text-on-surface/50">.v1</span>
+          </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6">
+        {/* Links */}
+        <nav className="hidden md:flex items-center gap-8">
           <a
-            className="text-secondary font-headline opacity-70 hover:text-primary hover:bg-primary/10 transition-all duration-300 font-black uppercase tracking-widest text-sm"
+            className="text-secondary font-headline opacity-60 hover:opacity-100 hover:text-primary transition-all duration-300 font-black uppercase tracking-[0.2em] text-[10px] border-b border-transparent hover:border-primary"
             href="#"
           >
-            Transmissions
+            TRANSMISSIONS
           </a>
           <a
-            className="text-tertiary font-headline border-b-2 border-tertiary pb-1 font-black uppercase tracking-widest text-sm"
+            className="text-tertiary font-headline border-b-2 border-tertiary pb-1 font-black uppercase tracking-[0.2em] text-[10px]"
             href="#"
           >
-            Archives
+            ARCHIVES
           </a>
           <a
-            className="text-secondary font-headline opacity-70 hover:text-primary hover:bg-primary/10 transition-all duration-300 font-black uppercase tracking-widest text-sm"
+            className="text-secondary font-headline opacity-60 hover:opacity-100 hover:text-primary transition-all duration-300 font-black uppercase tracking-[0.2em] text-[10px] border-b border-transparent hover:border-primary"
             href="#"
           >
-            Sync_Log
+            SYNC_LOG
           </a>
         </nav>
       </div>
 
-      <div className="flex items-center gap-4">
-        {/* Usamos las clases que definiste: surface-container, outline-variant, etc. */}
-        <div className="bg-surface-container px-3 py-1 flex items-center border border-outline-variant/30 rounded-sm">
-          <span className="material-symbols-outlined text-xs text-tertiary mr-2">
-            search
+      {/* Search and tools */}
+      <div className="flex items-center gap-6">
+        <div className="bg-surface-container/50 px-4 py-2 flex items-center border border-outline-variant/30 rounded-sm group focus-within:border-primary/50 transition-all">
+          <span className="material-symbols-outlined text-sm text-tertiary mr-3 group-focus-within:animate-pulse">
+            terminal
           </span>
           <input
-            className="bg-transparent border-none focus:ring-0 text-xs font-label text-tertiary placeholder:text-tertiary/30 w-32 md:w-48"
-            placeholder="TERMINAL_SEARCH..."
+            className="bg-transparent border-none focus:ring-0 text-[10px] font-label text-tertiary placeholder:text-tertiary/20 w-48 tracking-widest outline-none"
+            placeholder="EXECUTE_SEARCH..."
             type="text"
           />
         </div>
 
-        <span className="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 p-2 rounded-full transition-all">
-          settings
-        </span>
-        <span className="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 p-2 rounded-full transition-all">
-          terminal
-        </span>
+        <div className="flex items-center gap-2">
+          <button className="material-symbols-outlined text-primary hover:bg-primary/10 p-2 rounded-full transition-all text-xl">
+            settings
+          </button>
+          <button className="material-symbols-outlined text-primary hover:bg-primary/10 p-2 rounded-full transition-all text-xl">
+            notifications
+          </button>
+        </div>
       </div>
     </header>
   );

@@ -1,37 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@cofig "./tailwind.config.js";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+@theme {
+  /* Colors */
+  --color-background: #14121b;
+  --color-primary: #ffb1c7;
+  --color-secondary: #d3bbff;
+  --color-tertiary: #d7ca00;
+  --color-on-surface: #e6e0ee;
+  --color-surface-container-low: #1c1a24;
+  --color-surface-container-lowest: #0f0d16;
+  --color-outline-variant: #5a3f47;
+  --color-primary-container: #ff4993;
+
+  /* Fonts */
+  --font-headline: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
 }
 
 @layer base {
   body {
-    /* bg-background: usa tu color #14121b */
-    @apply bg-background;
-
-    /* text-on-surface: usa tu color #e6e0ee */
-    @apply text-on-surface;
-
-    /* font-body: usa la fuente "Inter" que configuramos */
-    @apply font-body;
-  }
-
-  /* Esto configura el color de resaltado cuando el usuario selecciona texto */
-  ::selection {
-    @apply bg-primary-container text-white;
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
   }
 }
