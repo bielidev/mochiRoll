@@ -46,64 +46,91 @@ const systemLibrary: Media[] = [
     image:
       "https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=400&h=300&fit=crop",
     badge: "WATCHED",
-    rating: 5.0,
+    rating: 5,
   },
 ];
 
-export const Home = () => {
+interface HomeProps {
+  query: string;
+}
+
+export const Home = ({ query }: HomeProps) => {
+  // Filter by search
+  const filteredLibrary = systemLibrary.filter((media) =>
+    media.title.toLowerCase().includes(query.toLowerCase()),
+  );
+
+  const hasSearch = query.trim().length > 0;
+  const resultCount = filteredLibrary.length;
+  const resultsText = resultCount === 1 ? "result" : "results";
+  const statusText = hasSearch
+    ? `Found ${resultCount} ${resultsText}...`
+    : "Locating underrated gems you can't miss...";
+
   return (
     <main className="ml-48 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
       <div className="p-10 pt-24 pb-32">
         {/* Header */}
-        <div className="mb-12">
+        <header className="mb-12">
           <div className="flex items-center gap-3 mb-2">
             <span className="text-tertiary text-xs">■</span>
             <span className="text-[10px] font-label text-tertiary uppercase tracking-[0.4em] animate-pulse">
-              LOCATING_FILES...
+              {statusText}
             </span>
           </div>
 
           <div className="flex items-baseline gap-4">
             <h1 className="text-7xl font-black font-headline text-on-surface uppercase tracking-tighter">
-              SYSTEM_
+              {hasSearch ? "Search" : "Hidden"}
             </h1>
-            <h1 className="text-7xl font-black font-headline text-primary drop-shadow-[0_0_20px_rgba(255,177,199,0.5)] uppercase tracking-tighter italic">
-              LIBRARY
-            </h1>
+            <span className="text-primary drop-shadow-[0_0_20px_rgba(255,177,199,0.5)] italic ml-4 text-7xl font-black font-headline uppercase tracking-tighter">
+              {hasSearch ? "Results" : "Bites"}
+            </span>
           </div>
 
           {/* Terminal Filters */}
-          <div className="flex items-center gap-4 mt-6">
+          <nav className="flex items-center gap-4 mt-6">
             <div className="flex gap-1 border border-outline-variant/30 p-1 rounded-sm">
               <button className="bg-tertiary/20 border border-tertiary text-tertiary px-4 py-1 text-[10px] font-bold tracking-widest uppercase">
-                [ ALL_DATA ]
+                [ All Data ]
               </button>
               <button className="hover:bg-surface-container border border-transparent text-on-surface/50 px-4 py-1 text-[10px] font-bold tracking-widest uppercase transition-all">
-                [ MOVIES ]
+                [ Actors ]
               </button>
               <button className="hover:bg-surface-container border border-transparent text-on-surface/50 px-4 py-1 text-[10px] font-bold tracking-widest uppercase transition-all">
-                [ SERIES ]
+                [ Series ]
               </button>
             </div>
-          </div>
-        </div>
+          </nav>
+        </header>
 
         {/* Media grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-12">
-          {systemLibrary.map((media) => (
-            <MediaCard
-              key={media.id}
-              id={media.id}
-              title={media.title}
-              image={media.image}
-              badge={media.badge}
-              rating={media.rating}
-            />
-          ))}
+        {filteredLibrary.length === 0 && hasSearch ? (
+          <div className="flex flex-col items-center justify-center py-24 text-center">
+            <span className="material-symbols-outlined text-6xl text-outline-variant/30 mb-4">
+              search_off
+            </span>
+            <p className="text-on-surface/50 text-sm font-label uppercase tracking-wider mb-2">
+              No series found
+            </p>
+            <p className="text-on-surface/30 text-xs font-label">
+              Try a different search query
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-12">
+            {filteredLibrary.map((media) => (
+              <MediaCard
+                key={media.id}
+                {...media} // Spread operator
+              />
+            ))}
 
-          {/* New entry button*/}
-          <MediaCard isEmpty={true} title="" image="" rating={0} />
-        </div>
+            {!hasSearch && (
+              <MediaCard id="new-item" title="Add New" image="" rating={0} />
+            )}
+          </div>
+        )}
       </div>
     </main>
   );

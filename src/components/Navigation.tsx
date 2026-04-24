@@ -1,11 +1,25 @@
-export const Navigation = () => {
+import { useState } from "react";
+
+export const Navigation = ({
+  onSearch,
+}: {
+  onSearch: (query: string) => void;
+}) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onSearch(inputValue);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-background/80 backdrop-blur-md border-b-4 border-double border-primary/20 shadow-[0_4px_30px_rgba(255,177,199,0.1)]">
       <div className="flex items-center gap-12">
         {/* Logo  */}
         <div className="flex flex-col">
-          <div className="text-xs font-label text-primary/50 tracking-[0.3em] mb-[-4px]">
-            Movie_OS
+          <div className="text-xs font-label text-primary/50 tracking-[0.3em] -mb-1">
+            Series Finder
           </div>
           <div className="text-xl font-black text-primary drop-shadow-[0_0_10px_rgba(255,177,199,0.5)] font-headline tracking-tighter italic">
             MOCHI_ROLL<span className="text-on-surface/50">.v1</span>
@@ -16,21 +30,21 @@ export const Navigation = () => {
         <nav className="hidden md:flex items-center gap-8">
           <a
             className="text-secondary font-headline opacity-60 hover:opacity-100 hover:text-primary transition-all duration-300 font-black uppercase tracking-[0.2em] text-[10px] border-b border-transparent hover:border-primary"
-            href="#"
+            href="/#/"
           >
-            TRANSMISSIONS
+            Home
           </a>
           <a
             className="text-tertiary font-headline border-b-2 border-tertiary pb-1 font-black uppercase tracking-[0.2em] text-[10px]"
-            href="#"
+            href="/#/recommendations"
           >
-            ARCHIVES
+            Recommendations
           </a>
           <a
             className="text-secondary font-headline opacity-60 hover:opacity-100 hover:text-primary transition-all duration-300 font-black uppercase tracking-[0.2em] text-[10px] border-b border-transparent hover:border-primary"
-            href="#"
+            href="/#/wishlist"
           >
-            SYNC_LOG
+            My WhishList
           </a>
         </nav>
       </div>
@@ -45,6 +59,12 @@ export const Navigation = () => {
             className="bg-transparent border-none focus:ring-0 text-[10px] font-label text-tertiary placeholder:text-tertiary/20 w-48 tracking-widest outline-none"
             placeholder="EXECUTE_SEARCH..."
             type="text"
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+              onSearch(e.target.value);
+            }}
+            onKeyDown={handleKeyDown}
           />
         </div>
 

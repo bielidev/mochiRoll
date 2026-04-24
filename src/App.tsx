@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { Sidebar } from "./components/Sidebar";
 import { StatusBar } from "./components/StatusBar";
-import { Home } from "./components/Home";
+import { Search } from "./components/Search";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <div className="min-h-screen bg-background text-on-surface overflow-hidden">
-      <Navigation />
+      <Navigation onSearch={(q) => setSearchQuery(q)} />
       <Sidebar />
-      <Home />
+      <Search query={searchQuery} />
       <StatusBar />
     </div>
   );

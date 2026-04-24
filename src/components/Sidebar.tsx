@@ -24,7 +24,7 @@ export const Sidebar = () => {
             </span>
           </div>
           <div className="font-headline font-black text-xs uppercase tracking-widest text-primary drop-shadow-[0_0_4px_rgba(255,177,199,0.4)]">
-            OPERATOR_01
+            User
           </div>
         </div>
         <div className="text-xs text-on-surface/50 uppercase tracking-wide ml-8">

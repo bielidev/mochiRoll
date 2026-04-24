@@ -38,7 +38,7 @@ export const MediaCard = ({
   return (
     <div className="group cursor-pointer">
       {/* Contains the image and the overlay */}
-      <div className="relative `aspect-[16/10` bg-surface-container-lowest border border-outline-variant/20 overflow-hidden">
+      <div className="relative aspect-[16/10] bg-surface-container-lowest border border-outline-variant/20 overflow-hidden">
         <img
           src={image}
           alt={title}
