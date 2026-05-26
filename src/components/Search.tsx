@@ -38,8 +38,8 @@ export const Search = ({ query }: { query: string }) => {
   const showEmptyState = hasQuery && !loading && resultCount === 0;
 
   return (
-    <main className="ml-48 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
-      <div className="p-10 pt-24 pb-32">
+    <main className="ml-0 md:ml-48 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
+      <div className="p-4 md:p-10 pt-24 md:pt-24 pb-32">
         {/* Header */}
         <header className="mb-12">
           <div className="flex items-center gap-3 mb-2">
@@ -51,11 +51,11 @@ export const Search = ({ query }: { query: string }) => {
             </span>
           </div>
 
-          <div className="flex items-baseline gap-4">
-            <h1 className="text-7xl font-black font-headline text-on-surface uppercase tracking-tighter">
+          <div className="flex flex-col sm:flex-row items-baseline gap-2 sm:gap-4">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-black font-headline text-on-surface uppercase tracking-tighter">
               Search
             </h1>
-            <span className="text-primary drop-shadow-[0_0_20px_rgba(255,177,199,0.5)] italic ml-4 text-7xl font-black font-headline uppercase tracking-tighter">
+            <span className="text-primary drop-shadow-[0_0_20px_rgba(255,177,199,0.5)] italic text-3xl sm:text-5xl md:text-7xl font-black font-headline uppercase tracking-tighter">
               Results
             </span>
           </div>
@@ -103,7 +103,7 @@ export const Search = ({ query }: { query: string }) => {
         )}
 
         {!showLoadingState && !showEmptyState && resultCount > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12">
             {results.map((result, index) => {
               const show = result.show;
               return (

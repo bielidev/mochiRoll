@@ -67,19 +67,19 @@ export const MediaCard = ({
       </div>
 
       {/* Card info */}
-      <div className="pt-4 px-1">
+      <div className="pt-3 md:pt-4 px-1">
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-label text-primary/50 uppercase tracking-[0.2em] mb-1">
+          <span className="text-[8px] md:text-[10px] font-label text-primary/50 uppercase tracking-[0.2em] mb-1">
             MOV_TRANS_{transNumber}
           </span>
-          <h3 className="text-sm font-headline font-black uppercase tracking-wider text-on-surface group-hover:text-primary transition-colors duration-300 line-clamp-1">
+          <h3 className="text-xs md:text-sm font-headline font-black uppercase tracking-wider text-on-surface group-hover:text-primary transition-colors duration-300 line-clamp-1">
             {title}
           </h3>
           <div className="flex items-center gap-2 mt-1">
             <span className="material-symbols-outlined text-xs text-tertiary">
               star
             </span>
-            <span className="text-[11px] font-label text-tertiary/80 font-bold">
+            <span className="text-[9px] md:text-[11px] font-label text-tertiary/80 font-bold">
               {rating.toFixed(1)}
             </span>
           </div>

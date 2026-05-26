@@ -6,11 +6,15 @@ import { Search } from "./components/Search";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-on-surface overflow-hidden">
-      <Navigation onSearch={(q) => setSearchQuery(q)} />
-      <Sidebar />
+      <Navigation
+        onSearch={(q) => setSearchQuery(q)}
+        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
+      />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <Search query={searchQuery} />
       <StatusBar />
     </div>
