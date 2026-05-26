@@ -1,3 +1,5 @@
+import type { WishlistItem } from "../types";
+
 interface MediaCardProps {
   id?: string;
   title: string;
@@ -5,6 +7,9 @@ interface MediaCardProps {
   badge?: "WATCHED" | "QUEUED";
   rating: number;
   isEmpty?: boolean;
+  isInWishlist?: boolean;
+  onAddToWishlist?: () => void;
+  source?: "local" | "tvmaze";
 }
 
 export const MediaCard = ({
@@ -14,6 +19,9 @@ export const MediaCard = ({
   badge,
   rating,
   isEmpty = false,
+  isInWishlist = false,
+  onAddToWishlist,
+  source = "local",
 }: MediaCardProps) => {
   if (isEmpty) {
     return (
@@ -59,6 +67,26 @@ export const MediaCard = ({
           </div>
         )}
 
+        {/* Wishlist button - top right */}
+        {onAddToWishlist && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              onAddToWishlist();
+            }}
+            className={`absolute right-3 top-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 z-20 shadow-[0_0_15px_rgba(211,187,255,0.5)] group-hover:shadow-[0_0_20px_rgba(211,187,255,0.8)] ${
+              isInWishlist
+                ? "bg-secondary text-background"
+                : "bg-secondary/20 text-secondary hover:bg-secondary"
+            }`}
+          >
+            <span className="material-symbols-outlined text-lg font-bold">
+              {isInWishlist ? "favorite" : "favorite_border"}
+            </span>
+          </button>
+        )}
+
+        {/* Play button - bottom right */}
         <button className="absolute right-3 bottom-3 w-10 h-10 rounded-full bg-primary flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(255,177,199,0.5)] group-hover:shadow-[0_0_20px_rgba(255,177,199,0.8)] z-10 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
           <span className="material-symbols-outlined text-xl text-background font-bold">
             play_arrow

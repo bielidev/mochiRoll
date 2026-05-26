@@ -23,3 +23,16 @@ export interface SearchResult {
   score?: number;
   show: Show;
 }
+
+export interface WishlistItem {
+  id: string;
+  title: string;
+  image: string;
+  rating: number;
+  source: "local" | "tvmaze";
+  addedAt: number;
+}
+
+export interface Wishlist {
+  items: WishlistItem[];
+}

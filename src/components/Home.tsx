@@ -68,7 +68,7 @@ export const Home = ({ query }: HomeProps) => {
     : "Locating underrated gems you can't miss...";
 
   return (
-    <main className="ml-0 md:ml-48 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
+    <main className="ml-0 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
       <div className="p-4 md:p-10 pt-20 md:pt-24 pb-20 md:pb-32">
         {/* Header */}
         <header className="mb-12">

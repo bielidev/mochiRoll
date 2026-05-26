@@ -2,10 +2,14 @@ import { useState } from "react";
 
 export const Navigation = ({
   onSearch,
-  onMenuToggle,
+  onPageChange,
+  currentPage,
+  wishlistCount,
 }: {
   onSearch: (query: string) => void;
-  onMenuToggle: () => void;
+  onPageChange: (page: "home" | "wishlist") => void;
+  currentPage: "home" | "wishlist";
+  wishlistCount: number;
 }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -18,18 +22,11 @@ export const Navigation = ({
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-4 md:px-8 py-3 md:py-4 bg-background/80 backdrop-blur-md border-b-4 border-double border-primary/20 shadow-[0_4px_30px_rgba(255,177,199,0.1)]">
       <div className="flex items-center gap-4 md:gap-12 flex-1 md:flex-none">
-        {/* Hamburger Menu - Mobile */}
-        <button
-          onClick={onMenuToggle}
-          className="md:hidden flex items-center justify-center w-10 h-10 rounded-sm hover:bg-primary/10 transition-all"
-        >
-          <span className="material-symbols-outlined text-xl text-primary">
-            menu
-          </span>
-        </button>
-
         {/* Logo  */}
-        <div className="flex flex-col">
+        <button
+          onClick={() => onPageChange("home")}
+          className="flex flex-col hover:opacity-80 transition-opacity"
+        >
           <div className="text-xs font-label text-primary/50 tracking-[0.3em] -mb-1 hidden sm:block">
             Series Finder
           </div>
@@ -37,28 +34,35 @@ export const Navigation = ({
             MOCHI_ROLL
             <span className="text-on-surface/50 text-xs md:text-base">.v1</span>
           </div>
-        </div>
+        </button>
 
         {/* Links */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-8">
-          <a
-            className="text-secondary font-headline opacity-60 hover:opacity-100 hover:text-primary transition-all duration-300 font-black uppercase tracking-[0.2em] text-[10px] border-b border-transparent hover:border-primary"
-            href="/#/"
+          <button
+            onClick={() => onPageChange("home")}
+            className={`font-headline font-black uppercase tracking-[0.2em] text-[10px] border-b-2 transition-all duration-300 pb-1 ${
+              currentPage === "home"
+                ? "text-secondary border-secondary"
+                : "text-secondary/60 hover:text-secondary border-transparent hover:border-secondary"
+            }`}
           >
             Home
-          </a>
-          <a
-            className="text-tertiary font-headline border-b-2 border-tertiary pb-1 font-black uppercase tracking-[0.2em] text-[10px]"
-            href="/#/recommendations"
+          </button>
+          <button
+            onClick={() => onPageChange("wishlist")}
+            className={`font-headline font-black uppercase tracking-[0.2em] text-[10px] border-b-2 transition-all duration-300 pb-1 relative ${
+              currentPage === "wishlist"
+                ? "text-tertiary border-tertiary"
+                : "text-tertiary/60 hover:text-tertiary border-transparent hover:border-tertiary"
+            }`}
           >
-            Recommendations
-          </a>
-          <a
-            className="text-secondary font-headline opacity-60 hover:opacity-100 hover:text-primary transition-all duration-300 font-black uppercase tracking-[0.2em] text-[10px] border-b border-transparent hover:border-primary"
-            href="/#/wishlist"
-          >
-            My WhishList
-          </a>
+            My Wishlist
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-3 bg-primary text-background text-[8px] font-black px-1.5 py-0.5 rounded-full">
+                {wishlistCount}
+              </span>
+            )}
+          </button>
         </nav>
       </div>
 

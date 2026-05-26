@@ -1,8 +1,20 @@
-import type { SearchResult } from "../types";
+import type { SearchResult, WishlistItem } from "../types";
 import { useEffect, useState } from "react";
 import { MediaCard } from "./MediaCard";
 
-export const Search = ({ query }: { query: string }) => {
+interface SearchProps {
+  query: string;
+  onAddToWishlist: (item: WishlistItem) => void;
+  isInWishlist: (id: string, source: "tvmaze") => boolean;
+  isLoaded: boolean;
+}
+
+export const Search = ({
+  query,
+  onAddToWishlist,
+  isInWishlist,
+  isLoaded,
+}: SearchProps) => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +50,7 @@ export const Search = ({ query }: { query: string }) => {
   const showEmptyState = hasQuery && !loading && resultCount === 0;
 
   return (
-    <main className="ml-0 md:ml-48 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
+    <main className="ml-0 mr-0 min-h-screen bg-background border-l border-outline-variant/20">
       <div className="p-4 md:p-10 pt-24 md:pt-24 pb-32">
         {/* Header */}
         <header className="mb-12">
@@ -113,6 +125,20 @@ export const Search = ({ query }: { query: string }) => {
                   title={show.name}
                   image={show.image?.medium || show.image?.original || ""}
                   rating={show.rating?.average ? show.rating.average / 2 : 0}
+                  source="tvmaze"
+                  isInWishlist={isInWishlist(String(show.id), "tvmaze")}
+                  onAddToWishlist={() => {
+                    onAddToWishlist({
+                      id: String(show.id),
+                      title: show.name,
+                      image: show.image?.medium || show.image?.original || "",
+                      rating: show.rating?.average
+                        ? show.rating.average / 2
+                        : 0,
+                      source: "tvmaze",
+                      addedAt: Date.now(),
+                    });
+                  }}
                 />
               );
             })}

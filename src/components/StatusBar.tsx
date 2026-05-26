@@ -2,7 +2,7 @@ export const StatusBar = () => {
   return (
     <>
       {/* Footer Status Bar */}
-      <footer className="fixed bottom-0 left-0 right-0 h-14 md:h-14 bg-background/80 backdrop-blur-md border-t border-outline-variant/20 px-4 md:px-8 ml-0 md:ml-48 flex justify-between items-center font-label text-[9px] md:text-[10px] text-on-surface/50 z-40">
+      <footer className="fixed bottom-0 left-0 right-0 h-14 md:h-14 bg-background/80 backdrop-blur-md border-t border-outline-variant/20 px-4 md:px-8 ml-0 flex justify-between items-center font-label text-[9px] md:text-[10px] text-on-surface/50 z-40">
         <div className="flex items-center gap-2 md:gap-8">
           {/* Item: Memory */}
           <div className="flex items-center gap-1 md:gap-2 tracking-[0.2em]">
